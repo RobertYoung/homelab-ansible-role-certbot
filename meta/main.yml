@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: RobertYoung
-  description: Ansible role for automated SSL certificate management using Let's Encrypt certbot with AWS Route53 DNS validation
+  description: Ansible role for SSL certificate management with Let's Encrypt certbot and AWS Route53 DNS validation
   license: MIT
   min_ansible_version: "2.15"
   platforms:
