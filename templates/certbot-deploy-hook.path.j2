@@ -1,0 +1,8 @@
+[Unit]
+Description=Watch certificate for {{ certbot_cert_name }} and trigger restart
+
+[Path]
+PathChanged={{ certbot_letsencrypt_config_dir }}/live/{{ certbot_cert_name }}/fullchain.pem
+
+[Install]
+WantedBy=multi-user.target

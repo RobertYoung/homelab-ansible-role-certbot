@@ -1,0 +1,8 @@
+services:
+  certbot:
+    container_name: certbot
+    image: certbot/dns-route53:{{ certbot_image_version }}
+    volumes:
+      - {{ certbot_letsencrypt_config_dir }}:/etc/letsencrypt/:rw
+    env_file:
+      - ./certbot.env
