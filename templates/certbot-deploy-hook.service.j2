@@ -1,0 +1,6 @@
+[Unit]
+Description=Run deploy hook after certificate renewal for {{ certbot_cert_name }}
+
+[Service]
+Type=oneshot
+ExecStart={{ certbot_letsencrypt_config_dir }}/deploy-hook.sh

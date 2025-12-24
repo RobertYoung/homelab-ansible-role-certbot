@@ -1,0 +1,9 @@
+[Unit]
+Description=Run {{ certbot_service_name }} to get a new or renew a certificate
+OnFailure=mail-systemd-failure@%n.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/docker compose run --rm {{ certbot_service_name }} certonly --cert-name {{ certbot_cert_name }} -n --dns-route53 --domains {{ certbot_domain }}
+WorkingDirectory={{ certbot_config_dir }}
+EnvironmentFile=/etc/environment

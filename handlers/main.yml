@@ -1,0 +1,36 @@
+---
+- name: "Restart {{ certbot_service_name }}"
+  become: true
+  changed_when: true
+  ansible.builtin.systemd:
+    name: "{{ certbot_service_name }}"
+    state: stopped
+  notify: Reload systemd
+
+- name: "Reload systemd"
+  become: true
+  changed_when: true
+  ansible.builtin.systemd:
+    daemon_reload: true
+  notify: "Start {{ certbot_service_name }}"
+
+- name: "Start {{ certbot_service_name }}"
+  become: true
+  ansible.builtin.systemd:
+    name: "{{ certbot_service_name }}"
+    enabled: true
+    state: started
+
+- name: "Start {{ certbot_service_name }} timer"
+  become: true
+  ansible.builtin.systemd:
+    name: "{{ certbot_service_name }}.timer"
+    enabled: true
+    state: started
+
+- name: "Enable and start certbot deploy hook path"
+  become: true
+  ansible.builtin.systemd:
+    name: "{{ certbot_service_name }}-deploy-hook.path"
+    enabled: true
+    state: started

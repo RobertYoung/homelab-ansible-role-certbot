@@ -1,0 +1,9 @@
+---
+certbot_domain: example.com
+certbot_config_dir: /etc/certbot
+certbot_letsencrypt_config_dir: /etc/letsencrypt
+certbot_service_name: certbot
+certbot_user: certbot
+certbot_image_version: v3.2.0
+certbot_cert_name: "{{ certbot_domain }}"
+certbot_deploy_hook_script: files/deploy-hook.sh
